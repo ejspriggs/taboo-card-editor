@@ -1,0 +1,22 @@
+{
+  "name": "taboo-card-editor",
+  "version": "1.0.0",
+  "description": "Website users can CRUD user accounts, and having chosen a user account, can CRUD cards as that user.  Should be modular enough to be adapted to serve as a config component of a larger project where you can play the game online, later.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js -e css,ejs,js,json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-livereload": "^0.6.1",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "livereload": "^0.9.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.0.4"
+  }
+}
