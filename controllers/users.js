@@ -11,22 +11,24 @@ router.get("/new", (req, res) => {
     res.send("Getting new user form without seed data...");
 });
 
-router.get("/:id", (req, res) => {
-    res.send(`Getting user detail page for user "${req.params.id}"...`);
+router.get("/:user", (req, res) => {
+    res.send(`Getting user detail page for user "${req.params.user}"...`);
 });
 
-router.get("/:id/edit", (req, res) => {
-    res.send(`Getting new user form with seed data for user "${req.params.id}"...`);
+router.get("/:user/edit", (req, res) => {
+    res.send(`Getting new user form with seed data for user "${req.params.user}"...`);
 });
 
 router.post("/", (req, res) => {
     res.send("Adding new user...");
 });
 
-router.put("/:id", (req, res) => {
-    res.send(`Editing user ${req.params.id}...`);
+router.put("/:user", (req, res) => {
+    res.send(`Editing user ${req.params.user}...`);
 });
 
-router.delete("/:id", (req, res) => {
-    res.send(`Deleting user ${req.params.id}...`);
+router.delete("/:user", (req, res) => {
+    res.send(`Deleting user ${req.params.user}...`);
 });
+
+exports = router;

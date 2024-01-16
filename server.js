@@ -30,8 +30,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Mount controllers
 
+console.log(usersController);
+console.log(cardsController);
+usersController.use("/:user/cards", cardsController);
 app.use("/users", usersController);
-app.use("/cards", cardsController);
 
 // Non-REST routes
 
