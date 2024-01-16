@@ -5,5 +5,23 @@ Website users can CRUD user accounts, and having chosen a user account, can CRUD
 ![users-wide](users-wide.jpg)
 ![cards-narrow](cards-narrow.jpg)
 ![cards-wide](cards-wide.jpg)
-![routing table](routing-table.jpg)
 ![entity-relationship diagram](erd.jpg)
+
+| URL             | REST Operation     | HTTP Verb | CRUD Action   | EJS View             |
+| :-------------- | :----------------- | :-------: | :-----------: | :------------------- |
+| /nuke           | N/A                | GET       | delete/create | N/A                  |
+| /               | redirect: /users   | GET       | N/A           | N/A                  |
+| /users          | index              | GET       | read          | index-users.ejs      |
+| /users/new      | form for creation  | GET       | N/A           | user-create-edit.ejs |
+| /users/:id      | show               | GET       | read          | user-show.ejs        |
+| /users/edit/:id | form for edit      | GET       | read          | user-create-edit.ejs |
+| /users          | add                | POST      | create        | N/A                  |
+| /users/:id      | edit               | PUT       | update        | N/A                  |
+| /users/:id      | destroy            | DELETE    | delete        | N/A                  |
+| /cards          | index              | GET       | read          | index-cards.ejs      |
+| /cards/new      | form for creation  | GET       | N/A           | card-create-edit.ejs |
+| /cards/:id      | show               | GET       | read          | card-show.ejs        |
+| /cards/edit/:id | form for edit      | GET       | read          | card-create-edit.ejs |
+| /cards          | add                | POST      | create        | N/A                  |
+| /cards/:id      | edit               | PUT       | update        | N/A                  |
+| /cards/:id      | destroy            | DELETE    | delete        | N/A                  |
