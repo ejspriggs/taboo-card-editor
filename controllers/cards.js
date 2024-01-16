@@ -15,7 +15,7 @@ router.get("/:id", (req, res) => {
     res.send(`Getting card detail page for card "${req.params.id}"...`);
 });
 
-router.get("/edit/:id", (req, res) => {
+router.get("/:id/edit", (req, res) => {
     res.send(`Getting new card form with seed data for card "${req.params.id}"...`);
 });
 

@@ -1,4 +1,4 @@
-# taboo-card-editor
+# Taboo Card Editor
 Website users can CRUD user accounts, and having chosen a user account, can CRUD cards as that user.  Should be modular enough to be adapted to serve as a config component of a larger project where you can play the game online, later.
 
 ![users-narrow](readme_images/users-narrow.jpg)
@@ -7,6 +7,31 @@ Website users can CRUD user accounts, and having chosen a user account, can CRUD
 ![cards-wide](readme_images/cards-wide.jpg)
 ![entity-relationship diagram](readme_images/erd.jpg)
 
+# MVP Routing Table
+## no user authentication, cards organized as a nested resource inside users
+
+| URL                         | REST Operation     | HTTP Verb | CRUD Action   | EJS View             |
+| :-------------------------- | :----------------- | :-------: | :-----------: | :------------------- |
+| /nuke                       | N/A                | GET       | delete/create | N/A                  |
+| /                           | redirect: /users   | GET       | N/A           | N/A                  |
+| /users                      | index              | GET       | read          | index-users.ejs      |
+| /users/new                  | form for creation  | GET       | N/A           | user-create-edit.ejs |
+| /users/:user                | show               | GET       | read          | user-show.ejs        |
+| /users/:user/edit           | form for edit      | GET       | read          | user-create-edit.ejs |
+| /users                      | add                | POST      | create        | N/A                  |
+| /users/:user                | edit               | PUT       | update        | N/A                  |
+| /users/:user                | destroy            | DELETE    | delete        | N/A                  |
+| /users/:user/cards          | index              | GET       | read          | index-cards.ejs      |
+| /users/:user/cards/new      | form for creation  | GET       | N/A           | card-create-edit.ejs |
+| /users/:user/cards/:id      | show               | GET       | read          | card-show.ejs        |
+| /users/:user/cards/:id/edit | form for edit      | GET       | read          | card-create-edit.ejs |
+| /users/:user/cards          | add                | POST      | create        | N/A                  |
+| /users/:user/cards/:id      | edit               | PUT       | update        | N/A                  |
+| /users/:user/cards/:id      | destroy            | DELETE    | delete        | N/A                  |
+
+# Stretch Routing Table
+## user authentication via oauth, card routes changed to be shallow
+
 | URL             | REST Operation     | HTTP Verb | CRUD Action   | EJS View             |
 | :-------------- | :----------------- | :-------: | :-----------: | :------------------- |
 | /nuke           | N/A                | GET       | delete/create | N/A                  |
@@ -14,14 +39,14 @@ Website users can CRUD user accounts, and having chosen a user account, can CRUD
 | /users          | index              | GET       | read          | index-users.ejs      |
 | /users/new      | form for creation  | GET       | N/A           | user-create-edit.ejs |
 | /users/:id      | show               | GET       | read          | user-show.ejs        |
-| /users/edit/:id | form for edit      | GET       | read          | user-create-edit.ejs |
+| /users/:id/edit | form for edit      | GET       | read          | user-create-edit.ejs |
 | /users          | add                | POST      | create        | N/A                  |
 | /users/:id      | edit               | PUT       | update        | N/A                  |
 | /users/:id      | destroy            | DELETE    | delete        | N/A                  |
 | /cards          | index              | GET       | read          | index-cards.ejs      |
 | /cards/new      | form for creation  | GET       | N/A           | card-create-edit.ejs |
 | /cards/:id      | show               | GET       | read          | card-show.ejs        |
-| /cards/edit/:id | form for edit      | GET       | read          | card-create-edit.ejs |
+| /cards/:id/edit | form for edit      | GET       | read          | card-create-edit.ejs |
 | /cards          | add                | POST      | create        | N/A                  |
 | /cards/:id      | edit               | PUT       | update        | N/A                  |
 | /cards/:id      | destroy            | DELETE    | delete        | N/A                  |

@@ -15,7 +15,7 @@ router.get("/:id", (req, res) => {
     res.send(`Getting user detail page for user "${req.params.id}"...`);
 });
 
-router.get("/edit/:id", (req, res) => {
+router.get("/:id/edit", (req, res) => {
     res.send(`Getting new user form with seed data for user "${req.params.id}"...`);
 });
 
