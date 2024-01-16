@@ -32,4 +32,4 @@ router.delete("/:id", (req, res) => {
     res.send(`Deleting card ${req.params.id} for user ${req.params.user}...`);
 });
 
-exports = router;
+module.exports = router;

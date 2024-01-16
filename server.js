@@ -5,6 +5,8 @@ const express = require("express");
 const livereload = require("livereload");
 const connectLivereload = require("connect-livereload");
 const methodOverride = require("method-override");
+const dotEnv = require("dotenv");
+dotEnv.config();
 
 // Requires internal to this project
 
@@ -30,8 +32,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Mount controllers
 
-console.log(usersController);
-console.log(cardsController);
 usersController.use("/:user/cards", cardsController);
 app.use("/users", usersController);
 

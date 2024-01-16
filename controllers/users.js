@@ -31,4 +31,4 @@ router.delete("/:user", (req, res) => {
     res.send(`Deleting user ${req.params.user}...`);
 });
 
-exports = router;
+module.exports = router;
