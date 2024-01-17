@@ -5,31 +5,31 @@ const router = express.Router({ mergeParams: true });
 const models = require("../models/index");
 
 router.get("/", (req, res) => {
-    res.send(`Getting card index for user ${req.params.user}...`);
+    res.send(`Getting card index for user "${req.params.user}"...`);
 });
 
 router.get("/new", (req, res) => {
-    res.send(`Getting edit card form for user ${req.params.user}, without seed data...`);
+    res.send(`Getting edit card form for user "${req.params.user}", without seed data...`);
 });
 
-router.get("/:id", (req, res) => {
-    res.send(`Getting card detail page for user ${req.params.user}, card "${req.params.card}"...`);
+router.get("/:card", (req, res) => {
+    res.send(`Getting card detail page for user "${req.params.user}", card "${req.params.card}"...`);
 });
 
 router.get("/:id/edit", (req, res) => {
-    res.send(`Getting edit card form for user ${req.params.user}, with seed data from card "${req.params.id}"...`);
+    res.send(`Getting edit card form for user "${req.params.user}", with seed data from card "${req.params.id}"...`);
 });
 
 router.post("/", (req, res) => {
-    res.send(`Adding new card for user ${req.params.user}...`);
+    res.send(`Adding new card for user "${req.params.user}"...`);
 });
 
 router.put("/:id", (req, res) => {
-    res.send(`Editing card ${req.params.id} for user ${req.params.user}...`);
+    res.send(`Editing card "${req.params.id}" for user "${req.params.user}"...`);
 });
 
 router.delete("/:id", (req, res) => {
-    res.send(`Deleting card ${req.params.id} for user ${req.params.user}...`);
+    res.send(`Deleting card "${req.params.id}" for user "${req.params.user}"...`);
 });
 
 module.exports = router;
