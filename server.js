@@ -13,6 +13,10 @@ dotEnv.config();
 const usersController = require("./controllers/users");
 const cardsController = require("./controllers/cards");
 const models = require("./models/index");
+    const userModel = models.userModel;
+    const cardModel = models.cardModel;
+    const seedUser = models.seedData.user;
+    const seedCards = models.seedData.cards;
 
 // Set up express.js in the usual way
 
@@ -34,7 +38,6 @@ app.use(express.urlencoded({ extended: true }));
 
 usersController.use("/:user/cards", cardsController);
 app.use("/users", usersController);
-// app.use("/cards", cardsController);
 
 // Non-REST routes
 
@@ -42,10 +45,20 @@ app.get("/", (req, res) => {
     res.redirect("/users");
 });
 
-app.get("/nuke", (req, res) => {
-    // TODO: Implement this
-    // TODO: Remove this
-    res.send("Nuking all database contents and reseeding...");
+app.get("/nuke", async (req, res) => {
+    // TODO: Remove this route for "production," later.
+    const userDeletionSummary = await userModel.deleteMany({});
+    console.log(`Deleted all user documents from collection (total ${userDeletionSummary.deletedCount}).`);
+    const cardDeletionSummary = await cardModel.deleteMany({});
+    console.log(`Deleted all card documents from collection (total ${cardDeletionSummary.deletedCount}).`);
+    const userCreateResult = await userModel.create(seedUser);
+    console.log("Inserted seed user.");
+    for (let card of seedCards) {
+        card.author = userCreateResult._id;
+    }
+    const cardInsertManyResult = await cardModel.insertMany(seedCards);
+    console.log(`Inserted ${cardInsertManyResult.length} seed cards referencing seed user as author.`);
+    res.redirect("/");
 });
 
 app.get("/about", (req, res) => {
