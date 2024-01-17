@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:user", (req, res) => {
-    res.send(`Editing user ${req.params.user}...`);
+    res.send(`Editing user ${req.params.user} with ${JSON.stringify(req.body)}...`);
 });
 
 router.delete("/:user", (req, res) => {

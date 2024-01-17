@@ -24,12 +24,12 @@ router.post("/", (req, res) => {
     res.send(`Adding new card for user "${req.params.user}"...`);
 });
 
-router.put("/:id", (req, res) => {
-    res.send(`Editing card "${req.params.id}" for user "${req.params.user}"...`);
+router.put("/:card", (req, res) => {
+    res.send(`Editing card "${req.params.card}" for user "${req.params.user}"...`);
 });
 
-router.delete("/:id", (req, res) => {
-    res.send(`Deleting card "${req.params.id}" for user "${req.params.user}"...`);
+router.delete("/:card", (req, res) => {
+    res.send(`Deleting card "${req.params.card}" for user "${req.params.user}"...`);
 });
 
 module.exports = router;

@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 
 usersController.use("/:user/cards", cardsController);
 app.use("/users", usersController);
+// app.use("/cards", cardsController);
 
 // Non-REST routes
 
