@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head.ejs", { title: "User Index", css: "", js: "" }) %>
+<body>
+    <%- include("partials/nav.ejs") %>
+    <% for (let user of users) { %>
+        <p>User name: <%= user.name %></p>
+        <p>User current color: <%= user.currentColor %></p>
+        <br>
+    <% } %>
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>

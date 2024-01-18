@@ -2,9 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const models = require("../models/index");
+    const userModel = models.userModel;
+    const cardModel = models.cardModel;
 
 router.get("/", (req, res) => {
-    res.send("Getting user index...");
+    userModel.find({}).then( (users) => {
+        res.render("index-users", { users: users });
+    });
 });
 
 router.get("/new", (req, res) => {
