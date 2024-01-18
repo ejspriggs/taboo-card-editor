@@ -7,12 +7,14 @@
         <h1><span class="federal-blue">C</span><span class="pantone-orange">a</span><span class="avocado">r</span><span class="goldenrod">d</span><span class="federal-blue">s</span></h1>
     </section>
     <section class="hero">
-        <a href="/users/<%= user._id %>/cards/new" class="btn bg-<%= user.currentColor %>">Add a card as <%= user.name %></a>
+        <p>
+            <a href="/users/<%= user._id %>/cards/new" class="btn bg-<%= user.currentColor %>">Add a card as <%= user.name %></a>
+        </p>
     </section>
     <main>
         <div class="card-deck">
             <% for (let card of cards) { %>
-                <div class="card col-sm-6 col-xl-3 bg-light">
+                <div class="card col-sm-6 col-xl-3 bg-floral-white">
                     <div class="card-body text-center">
                         <h5 class="card-title bg-<%= card.bgColor %>"><%= card.target %></h5>
                         <ul class="list-group list-group-flush">

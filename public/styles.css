@@ -46,6 +46,10 @@
     color: var(--floral-white);
 }
 
+.bg-floral-white {
+    background-color: var(--floral-white);
+}
+
 .hero {
     text-align: center;
 }
