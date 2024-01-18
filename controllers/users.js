@@ -16,18 +16,18 @@ router.get("/new", (req, res) => {
 });
 
 router.get("/:user", (req, res) => {
-    // res.redirect(`/users/${req.params.user}/cards`); <-- Switch to this?
-    userModel.findById(req.params.user).then( (user) => {
-        res.render("user-show", { user: user });
-    }).catch( (reason) => {
-        console.log(reason);
-        res.redirect("404");
-    });
+    res.redirect(`/users/${req.params.user}/cards`);
+    // userModel.findById(req.params.user).then( (user) => {
+    //     res.render("user-show", { name: user.name });
+    // }).catch( (reason) => {
+    //     console.log(reason);
+    //     res.redirect("404");
+    // });
 });
 
 router.get("/:user/edit", (req, res) => {
     userModel.findById(req.params.user).then( (user) => {
-        res.render("user-create-edit", { user: user });
+        res.render("user-create-edit", { isEdit: true, user: user });
     }).catch( (reason) => {
         console.log(reason);
         res.redirect("404");
@@ -36,7 +36,6 @@ router.get("/:user/edit", (req, res) => {
 
 router.post("/", (req, res) => {
     userModel.create(req.body).then( (createResult) => {
-        console.log(createResult);
         res.redirect("/");
     }).catch( (reason) => {
         console.log(reason);

@@ -1,6 +1,6 @@
 const seedUser = {
     name: "Edward Spriggs",
-    currentColor: "federalBlue"
+    currentColor: "federal-blue"
 };
 
 const seedCards = [

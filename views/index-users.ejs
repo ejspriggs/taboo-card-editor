@@ -3,11 +3,25 @@
 <%- include("partials/head.ejs", { title: "User Index", css: "", js: "" }) %>
 <body>
     <%- include("partials/nav.ejs") %>
-    <% for (let user of users) { %>
-        <p>User name: <%= user.name %></p>
-        <p>User current color: <%= user.currentColor %></p>
-        <br>
-    <% } %>
+    <section class="hero">
+        <h1><span class="federal-blue">T</span><span class="pantone-orange">a</span><span class="avocado">b</span><span class="goldenrod">o</span><span class="federal-blue">o</span></h1>
+    </section>
+    <main>
+        <div class="card-deck">
+            <% for (let user of users) { %>
+                <div class="card col-xs-6 col-sm-4 col-lg-2 col-xxl-1 bg-light">
+                    <div class="card-body text-center">
+                        <h5 class="card-title bg-<%= user.currentColor %>"><%= user.name %></h5>
+                        <form method="POST" action="/users/<%= user._id %>?_method=DELETE">
+                            <input type="submit" value="Del" class="btn btn-danger">
+                            <a href="/users/<%= user._id %>/edit" class="btn btn-warning">Edit</a>
+                            <a href="/users/<%= user._id %>" class="btn btn-primary">Select</a>
+                        </form>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </main>
     <%- include("partials/footer.ejs") %>
 </body>
 </html>

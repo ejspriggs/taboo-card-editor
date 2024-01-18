@@ -1,17 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <% if (isEdit) { %>
-    <%- include("partials/head.ejs", { title: "Edit User " + name, css: "", js: "" }) %>
+    <%- include("partials/head.ejs", { title: "Edit User " + user.name, css: "", js: "" }) %>
 <% } else { %>
     <%- include("partials/head.ejs", { title: "Add User", css: "", js: "" }) %>
 <% } %>
 <body>
     <%- include("partials/nav.ejs") %>
     <% if (isEdit) { %>
-        <p>Form with info for <%= name %> pre-filled will be here.</p>
+        <form method="POST" action="/users?_method=PUT">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="<%= user.name %>" required>
+            <fieldset>
+                <legend>Select color:</legend>
+                <div>
+                    <p>
+                        <input type="radio" id="federal-blue" name="currentColor" value="federal-blue"
+                        <% if (user.currentColor === "federal-blue" ) { %>
+                            checked
+                        <% } %>
+                        >
+                        <label for="federal-blue"><span class="bg-federal-blue">Federal Blue</span></label>
+                    </p>
+                    <p>
+                        <input type="radio" id="goldenrod" name="currentColor" value="goldenrod"
+                        <% if (user.currentColor === "goldenrod" ) { %>
+                            checked
+                        <% } %>
+                        >
+                        <label for="goldenrod"><span class="bg-goldenrod">Goldenrod</span></label>
+                    </p>
+                    <p>
+                        <input type="radio" id="avocado" name="currentColor" value="avocado"
+                        <% if (user.currentColor === "avocado" ) { %>
+                            checked
+                        <% } %>
+                        >
+                        <label for="avocado"><span class="bg-avocado">Avocado</span></label>
+                    </p>
+                    <p>
+                        <input type="radio" id="pantone-orange" name="currentColor" value="pantone-orange"
+                        <% if (user.currentColor === "pantone-orange" ) { %>
+                            checked
+                        <% } %>
+                        >
+                        <label for="pantone-orange"><span class="bg-pantone-orange">Pantone Orange</span></label>
+                    </p>
+                </div>
+                <div>
+                    <button type="submit">Save</button>
+                </div>
+            </fieldset>
     <% } else { %>
-        <p>Empty form will be here.</p>
+        <form method="POST" action="/users">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <fieldset>
+                <legend>Select color:</legend>
+                <div>
+                    <p>
+                        <input type="radio" id="federal-blue" name="currentColor" value="federal-blue" checked>
+                        <label for="federal-blue"><span class="bg-federal-blue">Federal Blue</span></label>
+                    </p>
+                    <p>
+                        <input type="radio" id="goldenrod" name="currentColor" value="goldenrod">
+                        <label for="goldenrod"><span class="bg-goldenrod">Goldenrod</span></label>
+                    </p>
+                    <p>
+                        <input type="radio" id="avocado" name="currentColor" value="avocado">
+                        <label for="avocado"><span class="bg-avocado">Avocado</span></label>
+                    </p>
+                    <p>
+                        <input type="radio" id="pantone-orange" name="currentColor" value="pantone-orange">
+                        <label for="pantone-orange"><span class="bg-pantone-orange">Pantone Orange</span></label>
+                    </p>
+                </div>
+            </fieldset>
     <% } %>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+    </form>
     <%- include("partials/footer.ejs") %>
 </body>
 </html>
