@@ -53,3 +53,7 @@
 .hero > h1 {
     font-size: 144px;
 }
+
+.navbar > .navbar-brand {
+    padding-left: 16px;
+}

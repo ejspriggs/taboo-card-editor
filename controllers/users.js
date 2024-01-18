@@ -3,7 +3,6 @@ const router = express.Router();
 
 const models = require("../models/index");
     const userModel = models.userModel;
-    const cardModel = models.cardModel;
 
 router.get("/", (req, res) => {
     userModel.find({}).then( (users) => {
@@ -17,12 +16,6 @@ router.get("/new", (req, res) => {
 
 router.get("/:user", (req, res) => {
     res.redirect(`/users/${req.params.user}/cards`);
-    // userModel.findById(req.params.user).then( (user) => {
-    //     res.render("user-show", { name: user.name });
-    // }).catch( (reason) => {
-    //     console.log(reason);
-    //     res.redirect("404");
-    // });
 });
 
 router.get("/:user/edit", (req, res) => {

@@ -24,7 +24,7 @@ const seedCards = [
             "single",
             "double"
         ],
-        bgColor: "pantoneOrange",
+        bgColor: "pantone-orange",
         author: undefined // as above
     }, {
         target: "oriole",
@@ -35,7 +35,7 @@ const seedCards = [
             "camden yards",
             "stadium"
         ],
-        bgColor: "federalBlue",
+        bgColor: "federal-blue",
         author: undefined // as above
     }, {
         target: "jeep",
