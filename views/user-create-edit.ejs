@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<% if (isEdit) { %>
+    <%- include("partials/head.ejs", { title: "Edit User " + name, css: "", js: "" }) %>
+<% } else { %>
+    <%- include("partials/head.ejs", { title: "Add User", css: "", js: "" }) %>
+<% } %>
+<body>
+    <%- include("partials/nav.ejs") %>
+    <% if (isEdit) { %>
+        <p>Form with info for <%= name %> pre-filled will be here.</p>
+    <% } else { %>
+        <p>Empty form will be here.</p>
+    <% } %>
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>
