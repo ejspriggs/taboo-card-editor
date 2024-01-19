@@ -3,6 +3,7 @@ const router = express.Router({ mergeParams: true });
 // TODO: Remove the "mergeparams" bit up there, after OAuth is implemented.
 
 const models = require("../models/index");
+const { default: mongoose } = require("mongoose");
     const userModel = models.userModel;
     const cardModel = models.cardModel;
 
@@ -21,7 +22,16 @@ router.get("/", (req, res) => {
 });
 
 router.get("/new", (req, res) => {
-    res.send(`Getting edit card form for user "${req.params.user}", without seed data...`);
+    userModel.findById(req.params.user).then( (user) => {
+        if (user == null) { // Also matches "undefined"
+            res.render("404");
+        } else {
+            res.render("card-create-edit", { isEdit: false, user: user });
+        }
+    }).catch( (reason) => {
+        console.log(reason);
+        res.render("404");
+    });
 });
 
 router.get("/:card", (req, res) => {
@@ -33,7 +43,23 @@ router.get("/:card/edit", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    res.send(`Adding new card for user "${req.params.user}"...`);
+    cardModel.create({
+        target: req.body.target,
+        blockers: [
+            req.body.blocker1,
+            req.body.blocker2,
+            req.body.blocker3,
+            req.body.blocker4,
+            req.body.blocker5
+        ],
+        bgColor: req.body.bgColor,
+        author: new mongoose.Types.ObjectId(req.body.authorId)
+    }).then( (createResult) => {
+        res.redirect("/users/" + req.params.user + "/cards");
+    }).catch( (reason) => {
+        console.log(reason);
+        res.render("404");
+    });
 });
 
 router.put("/:card", (req, res) => {
@@ -41,7 +67,12 @@ router.put("/:card", (req, res) => {
 });
 
 router.delete("/:card", (req, res) => {
-    res.send(`Deleting card "${req.params.card}" for user "${req.params.user}"...`);
+    cardModel.findByIdAndDelete(req.params.card).then( (deletionSummary) => {
+        res.redirect("/users/" + req.params.user + "/cards");
+    }).catch( (reason) => {
+        console.log(reason);
+        res.render("404");
+    });
 });
 
 module.exports = router;

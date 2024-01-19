@@ -48,8 +48,7 @@ router.put("/:user", (req, res) => {
 
 router.delete("/:user", (req, res) => {
     userModel.findByIdAndDelete(req.params.user).then( (deletionSummary) => {
-        console.log(deletionSummary);
-        res.redirect("/");
+        res.redirect("/users");
     }).catch( (reason) => {
         console.log(reason);
         res.redirect("404");

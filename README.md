@@ -50,3 +50,5 @@ Website users can CRUD user accounts, and having chosen a user account, can CRUD
 | /cards          | add                | POST      | create        | N/A                  |
 | /cards/:id      | edit               | PUT       | update        | N/A                  |
 | /cards/:id      | destroy            | DELETE    | delete        | N/A                  |
+
+public/assets/home-small.svg is taken from https://en.wikipedia.org/wiki/File:Home-icon.svg (CC 3.0 license, author Timothy Miller)
