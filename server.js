@@ -34,7 +34,9 @@ if (process.env.ON_HEROKU === "false") {
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static("public"));
-app.use(connectLivereload());
+if (process.env.ON_HEROKU === "false") {
+    app.use(connectLivereload());
+}
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 
