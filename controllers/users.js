@@ -37,9 +37,9 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:user", (req, res) => {
-    userModel.findByIdAndUpdate(req.params.id, req.body).then( (updateResult) => {
+    userModel.findByIdAndUpdate(req.params.user, req.body).then( (updateResult) => {
         console.log(updateResult);
-        res.redirect(`/${req.params.user}`);
+        res.redirect(`/users`);
     }).catch( (reason) => {
         console.log(reason);
         res.redirect("404");

@@ -39,7 +39,25 @@ router.get("/:card", (req, res) => {
 });
 
 router.get("/:card/edit", (req, res) => {
-    res.send(`Getting edit card form for user "${req.params.user}", with seed data from card "${req.params.card}"...`);
+    userModel.findById(req.params.user).then( (user) => {
+        if (user == null) {
+            res.render("404");
+        } else {
+            cardModel.findById(req.params.card).then( (card) => {
+                if (card == null) {
+                    res.render("404");
+                } else {
+                    res.render("card-create-edit", { isEdit: true, user: user, card: card });
+                }
+            }).catch( (reason) => {
+                console.log(reason);
+                res.render("404");
+            });
+        }
+    }).catch( (reason) => {
+        console.log(reason);
+        res.render("404");
+    });
 });
 
 router.post("/", (req, res) => {
@@ -63,7 +81,23 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:card", (req, res) => {
-    res.send(`Editing card "${req.params.card}" for user "${req.params.user}"...`);
+    cardModel.findByIdAndUpdate(req.params.card, {
+        target: req.body.target,
+        blockers: [
+            req.body.blocker1,
+            req.body.blocker2,
+            req.body.blocker3,
+            req.body.blocker4,
+            req.body.blocker5
+        ],
+        bgColor: req.body.bgColor,
+        author: new mongoose.Types.ObjectId(req.body.authorId)
+    }).then( (editResult) => {
+        res.redirect("/users/" + req.params.user + "/cards");
+    }).catch( (reason) => {
+        console.log(reason);
+        res.render("404");
+    });
 });
 
 router.delete("/:card", (req, res) => {
