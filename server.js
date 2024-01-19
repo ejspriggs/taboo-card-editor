@@ -1,10 +1,16 @@
 // Requires external to this project
 
+require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const methodOverride = require("method-override");
-const dotEnv = require("dotenv");
-dotEnv.config();
+let livereload = undefined;
+let connectLivereload = undefined;
+if (process.env.ON_HEROKU === "false") {
+    console.log("Processing dev-only require() statements.");
+    livereload = require("livereload");
+    connectLivereload = require("connect-livereload");
+}
 
 // Requires internal to this project
 
@@ -25,12 +31,10 @@ app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 
-// Only 
-if (process.env.ON_HEROKU == "false") {
-    console.log("We aren't on Heroku, so enable some dev-only functionality.");
-    const livereload = require("livereload");
-    const connectLivereload = require("connect-livereload");
-    const livereloadServer = livereload.createServer();
+let livereloadServer = undefined;
+if (process.env.ON_HEROKU === "false") {
+    console.log("Processing dev-only liveload and connect-livereload configuration.");
+    livereloadServer = livereload.createServer();
     livereloadServer.server.once("connection", () => {
         setTimeout(() => {
             livereloadServer.refresh("/");
@@ -50,21 +54,23 @@ app.get("/", (req, res) => {
     res.redirect("/users");
 });
 
-app.get("/nuke", async (req, res) => {
-    // TODO: Remove this route for "production," later.
-    const userDeletionSummary = await userModel.deleteMany({});
-    console.log(`Deleted all user documents from collection (total ${userDeletionSummary.deletedCount}).`);
-    const cardDeletionSummary = await cardModel.deleteMany({});
-    console.log(`Deleted all card documents from collection (total ${cardDeletionSummary.deletedCount}).`);
-    const userCreateResult = await userModel.create(seedUser);
-    console.log("Inserted seed user.");
-    for (let card of seedCards) {
-        card.author = userCreateResult._id;
-    }
-    const cardInsertManyResult = await cardModel.insertMany(seedCards);
-    console.log(`Inserted ${cardInsertManyResult.length} seed cards referencing seed user as author.`);
-    res.redirect("/");
-});
+if (process.env.ON_HEROKU === "false") {
+    console.log("Adding dev-only /nuke route to express configuration.");
+    app.get("/nuke", async (req, res) => {
+        const userDeletionSummary = await userModel.deleteMany({});
+        console.log(`Deleted all user documents from collection (total ${userDeletionSummary.deletedCount}).`);
+        const cardDeletionSummary = await cardModel.deleteMany({});
+        console.log(`Deleted all card documents from collection (total ${cardDeletionSummary.deletedCount}).`);
+        const userCreateResult = await userModel.create(seedUser);
+        console.log("Inserted seed user.");
+        for (let card of seedCards) {
+            card.author = userCreateResult._id;
+        }
+        const cardInsertManyResult = await cardModel.insertMany(seedCards);
+        console.log(`Inserted ${cardInsertManyResult.length} seed cards referencing seed user as author.`);
+        res.redirect("/");
+    });
+}
 
 app.get("/about", (req, res) => {
     res.render("about");
