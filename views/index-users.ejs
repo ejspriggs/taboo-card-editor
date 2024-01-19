@@ -9,8 +9,8 @@
     <main>
         <div class="row">
             <% for (let user of users) { %>
-                <div class="col-sm-6 col-xl-3 bg-floral-white">
-                    <div class="card">
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card bg-floral-white">
                         <div class="card-body text-center">
                             <h5 class="card-title bg-<%= user.currentColor %>"><%= user.name %></h5>
                             <form method="POST" action="/users/<%= user._id %>?_method=DELETE">

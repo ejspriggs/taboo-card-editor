@@ -8,22 +8,18 @@
 
 .federal-blue {
     color: var(--federal-blue);
-    background-color: var(--floral-white);
 }
 
 .goldenrod {
     color: var(--goldenrod);
-    background-color: var(--floral-white);
 }
 
 .avocado {
     color: var(--avocado);
-    background-color: var(--floral-white);
 }
 
 .pantone-orange {
     color: var(--pantone-orange);
-    background-color: var(--floral-white);
 }
 
 .bg-federal-blue {

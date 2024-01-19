@@ -14,13 +14,13 @@
     <main>
         <div class="row">
             <% for (let card of cards) { %>
-                <div class="col-sm-6 col-xl-3 bg-floral-white">
-                    <div class="card">
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card bg-floral-white">
                         <div class="card-body text-center">
                             <h5 class="card-title bg-<%= card.bgColor %>"><%= card.target %></h5>
                             <ul class="list-group list-group-flush">
                                 <% for (let blocker of card.blockers) { %>
-                                    <li class="list-group-item"><%= blocker %></li>
+                                    <li class="list-group-item bg-floral-white"><%= blocker %></li>
                                 <% } %>
                             </ul>
                             <form method="POST" action="/users/<%= user._id %>/cards/<%= card._id %>?_method=DELETE">
