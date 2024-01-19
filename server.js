@@ -2,8 +2,10 @@
 
 const path = require("path");
 const express = require("express");
-const livereload = require("livereload");
-const connectLivereload = require("connect-livereload");
+if (process.env.ON_HEROKU === "false") {
+    const livereload = require("livereload");
+    const connectLivereload = require("connect-livereload");
+}
 const methodOverride = require("method-override");
 const dotEnv = require("dotenv");
 dotEnv.config();
@@ -21,12 +23,14 @@ const models = require("./models/index");
 // Set up express.js in the usual way
 
 const app = express();
-const livereloadServer = livereload.createServer();
-livereloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        livereloadServer.refresh("/");
-    }, 100);
-});
+if (process.env.ON_HEROKU === "false") {
+    const livereloadServer = livereload.createServer();
+    livereloadServer.server.once("connection", () => {
+        setTimeout(() => {
+            livereloadServer.refresh("/");
+        }, 100);
+    });
+}
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static("public"));
