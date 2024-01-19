@@ -2,10 +2,6 @@
 
 const path = require("path");
 const express = require("express");
-if (process.env.ON_HEROKU === "false") {
-    const livereload = require("livereload");
-    const connectLivereload = require("connect-livereload");
-}
 const methodOverride = require("method-override");
 const dotEnv = require("dotenv");
 dotEnv.config();
@@ -23,22 +19,25 @@ const models = require("./models/index");
 // Set up express.js in the usual way
 
 const app = express();
-if (process.env.ON_HEROKU === "false") {
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static("public"));
+app.use(methodOverride("_method"));
+app.use(express.urlencoded({ extended: true }));
+
+// Only 
+if (process.env.ON_HEROKU == "false") {
+    console.log("We aren't on Heroku, so enable some dev-only functionality.");
+    const livereload = require("livereload");
+    const connectLivereload = require("connect-livereload");
     const livereloadServer = livereload.createServer();
     livereloadServer.server.once("connection", () => {
         setTimeout(() => {
             livereloadServer.refresh("/");
         }, 100);
     });
-}
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-app.use(express.static("public"));
-if (process.env.ON_HEROKU === "false") {
     app.use(connectLivereload());
 }
-app.use(methodOverride("_method"));
-app.use(express.urlencoded({ extended: true }));
 
 // Mount controllers
 
