@@ -61,3 +61,7 @@
 .navbar > .navbar-brand {
     margin-left: 16px;
 }
+
+.nuke {
+    color: red;
+}

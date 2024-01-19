@@ -11,6 +11,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="/users/new">Add User</a>
             </li>
+            <% if (process.env.ON_HEROKU === "false") { %>
+                <li class="nav-item">
+                    <a class="nav-link nuke" href="/nuke">Nuke</a>
+                </li>
+            <% } %>
         </ul>
     </div>
 </nav>
