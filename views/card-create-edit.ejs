@@ -11,38 +11,60 @@
         <form method="POST" action="/users/<%= user._id %>/cards/<%= card._id %>?_method=PUT">
             <input type="hidden" id="authorId" name="authorId" value="<%= user._id %>">
             <input type="hidden" id="bgColor" name="bgColor" value="<%= user.currentColor %>">
-            <label for="target">Target</label>
-            <input type="text" id="target" name="target" value="<%= card.target %>" required>
-            <label for="blocker1">Blocker</label>
-            <input type="text" id="blocker1" name="blocker1" value="<%= card.blockers[0] %>" required>
-            <label for="blocker2">Blocker</label>
-            <input type="text" id="blocker2" name="blocker2" value="<%= card.blockers[1] %>" required>
-            <label for="blocker3">Blocker</label>
-            <input type="text" id="blocker3" name="blocker3" value="<%= card.blockers[2] %>" required>
-            <label for="blocker4">Blocker</label>
-            <input type="text" id="blocker4" name="blocker4" value="<%= card.blockers[3] %>" required>
-            <label for="blocker5">Blocker</label>
-            <input type="text" id="blocker5" name="blocker5" value="<%= card.blockers[4] %>" required>
+            <div class="mb-3">
+                <label for="target">Target</label>
+                <input type="text" id="target" name="target" value="<%= card.target %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker1">Blocker</label>
+                <input type="text" id="blocker1" name="blocker1" value="<%= card.blockers[0] %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker2">Blocker</label>
+                <input type="text" id="blocker2" name="blocker2" value="<%= card.blockers[1] %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker3">Blocker</label>
+                <input type="text" id="blocker3" name="blocker3" value="<%= card.blockers[2] %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker4">Blocker</label>
+                <input type="text" id="blocker4" name="blocker4" value="<%= card.blockers[3] %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker5">Blocker</label>
+                <input type="text" id="blocker5" name="blocker5" value="<%= card.blockers[4] %>" required>
+            </div>
     <% } else { %>
         <form method="POST" action="/users/<%= user._id %>/cards">
             <input type="hidden" id="authorId" name="authorId" value="<%= user._id %>">
             <input type="hidden" id="bgColor" name="bgColor" value="<%= user.currentColor %>">
-            <label for="target">Target</label>
-            <input type="text" id="target" name="target" value="" required>
-            <label for="blocker1">Blocker</label>
-            <input type="text" id="blocker1" name="blocker1" value="" required>
-            <label for="blocker2">Blocker</label>
-            <input type="text" id="blocker2" name="blocker2" value="" required>
-            <label for="blocker3">Blocker</label>
-            <input type="text" id="blocker3" name="blocker3" value="" required>
-            <label for="blocker4">Blocker</label>
-            <input type="text" id="blocker4" name="blocker4" value="" required>
-            <label for="blocker5">Blocker</label>
-            <input type="text" id="blocker5" name="blocker5" value="" required>
+            <div class="mb-3">
+                <label for="target">Target</label>
+                <input type="text" id="target" name="target" value="" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker1">Blocker</label>
+                <input type="text" id="blocker1" name="blocker1" value="" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker2">Blocker</label>
+                <input type="text" id="blocker2" name="blocker2" value="" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker3">Blocker</label>
+                <input type="text" id="blocker3" name="blocker3" value="" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker4">Blocker</label>
+                <input type="text" id="blocker4" name="blocker4" value="" required>
+            </div>
+            <div class="mb-3">
+                <label for="blocker5">Blocker</label>
+                <input type="text" id="blocker5" name="blocker5" value="" required>
+            </div>
     <% } %>
-    <div>
-        <button type="submit">Save</button>
-    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
     </form>
     <%- include("partials/footer.ejs") %>
 </body>

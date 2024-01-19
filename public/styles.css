@@ -61,3 +61,7 @@
 .nuke {
     color: red;
 }
+
+body > form {
+    margin: 16px;
+}
