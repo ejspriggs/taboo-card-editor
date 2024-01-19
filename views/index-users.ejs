@@ -7,16 +7,18 @@
         <h1><span class="federal-blue">T</span><span class="pantone-orange">a</span><span class="avocado">b</span><span class="goldenrod">o</span><span class="federal-blue">o</span></h1>
     </section>
     <main>
-        <div class="card-deck">
+        <div class="row">
             <% for (let user of users) { %>
-                <div class="card col-sm-6 col-xl-3 bg-floral-white">
-                    <div class="card-body text-center">
-                        <h5 class="card-title bg-<%= user.currentColor %>"><%= user.name %></h5>
-                        <form method="POST" action="/users/<%= user._id %>?_method=DELETE">
-                            <input type="submit" value="Del" class="btn btn-danger">
-                            <a href="/users/<%= user._id %>/edit" class="btn btn-warning">Edit</a>
-                            <a href="/users/<%= user._id %>" class="btn btn-primary">Login</a>
-                        </form>
+                <div class="col-sm-6 col-xl-3 bg-floral-white">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title bg-<%= user.currentColor %>"><%= user.name %></h5>
+                            <form method="POST" action="/users/<%= user._id %>?_method=DELETE">
+                                <input type="submit" value="Del" class="btn btn-danger">
+                                <a href="/users/<%= user._id %>/edit" class="btn btn-warning">Edit</a>
+                                <a href="/users/<%= user._id %>" class="btn btn-primary">Login</a>
+                            </form>
+                        </div>
                     </div>
                 </div>
             <% } %>

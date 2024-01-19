@@ -3,7 +3,15 @@
 <%- include("partials/head.ejs", { title: "About", css: "", js: "" }) %>
 <body>
     <%- include("partials/nav.ejs") %>
-    <p>This is placeholder text for the "About" page.</p>
+    <p class="lead">This is an educational project developed by Edward Spriggs, who is a fan of the game Taboo.</p>
+    <p>Its roadmap includes:</p>
+    <ul>
+        <li>Implement OAuth, instead of taking people's word for who they are and what user accounts should exist.</li>
+        <li>Better user interface design.  Gotta think more granularly about use cases and flow.</li>
+        <li>Some kind of backup and restore functionality.</li>
+        <li>Implement the actual game (drawing cards from a shared deck).</li>
+        <li>Implement per-user deck preferences (i.e. "that card sucks, when I make a game I don't want to use it").</li>
+    </ul>
     <%- include("partials/footer.ejs") %>
 </body>
 </html>
