@@ -34,10 +34,6 @@ router.get("/new", (req, res) => {
     });
 });
 
-router.get("/:card", (req, res) => {
-    res.send(`Getting card detail page for user "${req.params.user}", card "${req.params.card}"...`);
-});
-
 router.get("/:card/edit", (req, res) => {
     userModel.findById(req.params.user).then( (user) => {
         if (user == null) {

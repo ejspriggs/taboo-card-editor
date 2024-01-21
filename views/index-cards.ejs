@@ -26,7 +26,9 @@
                             <form method="POST" action="/users/<%= user._id %>/cards/<%= card._id %>?_method=DELETE">
                                 <input type="submit" value="Del" class="btn btn-danger">
                                 <a href="/users/<%= user._id %>/cards/<%= card._id %>/edit" class="btn btn-warning">Edit</a>
-                                <a href="/users/<%= user._id %>/cards/<%= card._id %>" class="btn btn-primary">View</a>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal<%= card._id %>">
+                                    Show
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -34,6 +36,31 @@
             <% } %>
         </div>
     </main>
+    <% for (let card of cards) { %>
+        <div class="modal fade" id="modal<%= card._id %>" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modal<%= card._id %>Label">Card View</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body taboo-text bg-<%= card.bgColor %>">
+                        <%= card.target %>
+                        <hr />
+                        <%= card.blockers[0] %>
+                        <br />
+                        <%= card.blockers[1] %>
+                        <br />
+                        <%= card.blockers[2] %>
+                        <br />
+                        <%= card.blockers[3] %>
+                        <br />
+                        <%= card.blockers[4] %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } %>
     <%- include("partials/footer.ejs") %>
 </body>
 </html>
