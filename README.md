@@ -51,4 +51,4 @@ Website users can CRUD user accounts, and having chosen a user account, can CRUD
 | /cards/:id      | edit               | PUT       | update        | N/A                  |
 | /cards/:id      | destroy            | DELETE    | delete        | N/A                  |
 
-public/assets/home-small.svg is taken from https://en.wikipedia.org/wiki/File:Home-icon.svg (CC 3.0 license, author Timothy Miller)
+House asset changed to the 24px png version of https://www.iconsdb.com/white-icons/house-icon.html (CC0 public domain)
