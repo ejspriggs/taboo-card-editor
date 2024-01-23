@@ -1,3 +1,6 @@
+# Deployment
+[Test deployment available here](https://taboo-editor-2294c73d3be1.herokuapp.com)
+
 # Taboo Card Editor
 Website users can CRUD user accounts, and having chosen a user account, can CRUD cards as that user.  Should be modular enough to be adapted to serve as a config component of a larger project where you can play the game online, later.
 
